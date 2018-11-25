@@ -236,3 +236,4 @@ _Pvt_Extensions
 # Project related
 /.vscode/
 *.csv
+*.tsv
