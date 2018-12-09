@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using ranking_showcase.Models;
+using ranking_showcase.Service;
 
 namespace ranking_showcase
 {
@@ -28,6 +28,7 @@ namespace ranking_showcase
             var physicalProvider = environment.ContentRootFileProvider;
             services.AddSingleton<IFileProvider>(physicalProvider);
             services.AddSingleton<RankingMgr>();
+            services.AddHostedService<FileSync>();
             services.AddCors(options => {
                 options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin());
             });

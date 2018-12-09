@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ranking_showcase.Models;
+using ranking_showcase.Service;
 
 namespace ranking_showcase.Controllers
 {
@@ -67,6 +67,11 @@ namespace ranking_showcase.Controllers
             } catch (Exception e) {
                 return BadRequest(e.Message);
             }
+        }
+
+        [HttpGet("date")]
+        public string Date() {
+            return rankingMgr.readUpdateDate().ToString("yyyy-MM-dd");
         }
     }
 }
