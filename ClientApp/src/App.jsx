@@ -15,7 +15,7 @@ const CustomHeader = styled(Header)`
   justify-content: space-between;
   align-items: center;
   font-size: 24px;
-`
+`;
 
 class App extends Component {
   constructor(props) {
@@ -24,18 +24,23 @@ class App extends Component {
   }
 
   render() {
-    return (<Layout>
-      <CustomHeader>
-        <div>某科学的 Bangumi 动画排名</div>
-        <div><Icon type="question-circle" theme="filled" /></div>
-      </CustomHeader>
-      <Content>
-        <Ranking />
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>
-        © 2018 Ronnie Wang, all rights reserved. Powered by .Net Core and React on Linux.
-      </Footer>
-    </Layout>)
+    return (
+      <Layout>
+        <CustomHeader>
+          <div>某科学的 Bangumi 动画排名</div>
+          <div>
+            <Icon type="question-circle" theme="filled" />
+          </div>
+        </CustomHeader>
+        <Content>
+          <Ranking />
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>
+          © 2018 Ronnie Wang, all rights reserved. Powered by .Net Core and
+          React on Linux.
+        </Footer>
+      </Layout>
+    );
   }
 }
 

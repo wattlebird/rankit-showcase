@@ -1,27 +1,32 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const baseUrl = 'https://localhost:5001/api/anime'
+const baseUrl = 'https://localhost:5001/api/anime';
 
-function ReadAll(start=0, len=50000){
-  return axios.get(`${baseUrl}/list`, {
-    params: {
-      start,
-      length: len
-    }
-  }).then(data => {
-    return data.data
-  })
+function ReadAll(start = 0, len = 50000) {
+  return axios
+    .get(`${baseUrl}/list`, {
+      params: {
+        start,
+        length: len,
+      },
+    })
+    .then(data => data.data);
 }
 
 function Search(q) {
   return axios.get(`${baseUrl}/search`, {
     params: {
-      q
-    }
-  })
+      q,
+    },
+  });
+}
+
+function Date() {
+  return axios.get(`${baseUrl}/date`).then(data => data.data);
 }
 
 export default {
   ReadAll,
-  Search
-}
+  Search,
+  Date,
+};

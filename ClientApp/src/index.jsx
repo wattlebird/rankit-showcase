@@ -6,6 +6,9 @@ import App from './App.jsx';
 
 import 'antd/dist/antd.css';
 
-ReactDOM.render((<LocaleProvider locale={zhCN}>
-  <App />
-</LocaleProvider>), document.getElementById('app'));
+ReactDOM.render(
+  <LocaleProvider locale={zhCN}>
+    <App />
+  </LocaleProvider>,
+  document.getElementById('app'),
+);
