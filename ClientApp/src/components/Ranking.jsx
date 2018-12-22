@@ -1,11 +1,18 @@
 import React from 'react';
-import { Table, Input, message } from 'antd';
+import { Card, Table, Input, message } from 'antd';
 import styled from 'styled-components';
+import raf from 'raf';
 import API from '../api';
 
-const Content = styled.div`
-  margin: 4em auto 0;
+const Content = styled(Card).attrs({
+  bordered: false
+})`
   width: 67vw;
+  &.ant-card {
+    margin: 4em auto 2em;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #111517;
+  }
 `;
 
 const SearchBar = styled.div`
@@ -18,6 +25,16 @@ const DateLabel = styled.div`
   flex-shrink: 0;
   margin-left: 1em;
 `;
+
+const easeInOutCubic = (t, b, c, d) => {
+  const cc = c - b;
+  t /= d / 2;
+  if (t < 1) {
+    return (cc / 2) * t * t * t + b;
+  } else {
+    return (cc / 2) * ((t -= 2) * t * t + 2) + b;
+  }
+};
 
 class Ranking extends React.Component {
   state = {
@@ -56,6 +73,29 @@ class Ranking extends React.Component {
     });
   };
 
+  onScrollToTop = () => {
+    const self = document.getElementById("content")
+    const pageScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const contentScrollTop = self.offsetTop;
+    if (contentScrollTop < pageScrollTop) {
+      const start = Date.now()
+      const frame = () => {
+        const current = Date.now()
+        const delta = current - start;
+        const next = easeInOutCubic(delta, pageScrollTop, contentScrollTop, 450);
+        document.body.scrollTop = next;
+        document.documentElement.scrollTop = next;
+        if (delta < 450) {
+          raf(frame)
+        } else {
+          document.body.scrollTop = contentScrollTop;
+          document.documentElement.scrollTop = contentScrollTop;
+        }
+      }
+      raf(frame);
+    }
+  }
+
   render() {
     const { name, updateDate, dataSource, isLoading } = this.state;
     const columns = [
@@ -64,7 +104,7 @@ class Ranking extends React.Component {
         dataIndex: 'name',
         key: 'name',
         render: (itm, rec) => (
-          <a href={`http://chii.in/subject/${rec.id}`}>{itm}</a>
+          <a href={`https://chii.in/subject/${rec.id}`} target="_blank">{itm}</a>
         ),
       },
       {
@@ -83,7 +123,7 @@ class Ranking extends React.Component {
       },
     ];
     return (
-      <Content>
+      <Content id="content">
         <SearchBar>
           <Input
             value={name}
@@ -111,6 +151,7 @@ class Ranking extends React.Component {
             pageSizeOptions: ['20', '50', '100'],
             showQuickJumper: true,
             showSizeChanger: true,
+            onChange: this.onScrollToTop
           }}
         />
       </Content>

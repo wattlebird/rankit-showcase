@@ -54,6 +54,7 @@
     "lodash": "4.17.11",
     "npm-check-updates": "^2.14.2",
     "prop-types": "15.6.2",
+    "raf": "^3.4.1",
     "react": "16.6.0",
     "react-dom": "16.6.0",
     "react-hot-loader": "4.3.11",
