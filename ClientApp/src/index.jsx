@@ -5,11 +5,11 @@ import { LocaleProvider } from 'antd';
 import App from './App.jsx';
 
 import 'antd/dist/antd.css';
-import 'reset.css'
+import 'reset.css';
 
 ReactDOM.render(
   <LocaleProvider locale={zhCN}>
-    <App/>
+    <App />
   </LocaleProvider>,
   document.getElementById('app'),
 );

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://localhost:5001/api/anime';
+const baseUrl = '/api/anime';
 
 function ReadAll(start = 0, len = 50000) {
   return axios

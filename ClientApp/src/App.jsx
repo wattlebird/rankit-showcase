@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { Layout, Icon, Button } from 'antd';
 import styled from 'styled-components';
-import backgroundImg from 'assets/background2.jpg'
+import backgroundImg from 'assets/background2.jpg';
 import Ranking from './components/Ranking';
 
 const { Header, Content, Footer } = Layout;
@@ -65,7 +65,12 @@ class App extends Component {
 
   render() {
     return (
-      <Layout style={{background: `url(${backgroundImg}) no-repeat scroll`, backgroundColor: '#020111', minHeight: '100vh'}}>
+      <Layout
+        style={{
+          background: `url(${backgroundImg}) no-repeat scroll`,
+          backgroundColor: '#020111',
+          minHeight: '100vh',
+        }}>
         <CustomHeader>
           <div>Bangumi Research</div>
           <div>
@@ -74,16 +79,24 @@ class App extends Component {
         </CustomHeader>
         <Content>
           <TitleBox>
-            <Title>某科学的 Bangumi 动画排名<TitleNote> v0.999</TitleNote></Title>
+            <Title>
+              某科学的 Bangumi 动画排名
+              <TitleNote> v0.999</TitleNote>
+            </Title>
             <ButtonGroup>
               <SubTitleButton>使用说明</SubTitleButton>
-              <SubTitleButton href="https://github.com/wattlebird/rankit-showcase" target="_blank">GitHub 页面</SubTitleButton>
+              <SubTitleButton
+                href="https://github.com/wattlebird/rankit-showcase"
+                target="_blank">
+                GitHub 页面
+              </SubTitleButton>
             </ButtonGroup>
           </TitleBox>
           <Ranking />
         </Content>
         <CustomFooter>
-          © 2018 Ronnie Wang, all rights reserved. Powered by React and .Net Core on Linux.
+          © 2018 Ronnie Wang, all rights reserved. Powered by React and .Net
+          Core on Linux.
         </CustomFooter>
       </Layout>
     );

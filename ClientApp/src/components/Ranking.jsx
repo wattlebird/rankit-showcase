@@ -5,7 +5,7 @@ import raf from 'raf';
 import API from '../api';
 
 const Content = styled(Card).attrs({
-  bordered: false
+  bordered: false,
 })`
   width: 67vw;
   &.ant-card {
@@ -26,14 +26,15 @@ const DateLabel = styled.div`
   margin-left: 1em;
 `;
 
-const easeInOutCubic = (t, b, c, d) => {
+const easeInOutCubic = (s, b, c, d) => {
+  let t = s;
   const cc = c - b;
   t /= d / 2;
   if (t < 1) {
     return (cc / 2) * t * t * t + b;
-  } else {
-    return (cc / 2) * ((t -= 2) * t * t + 2) + b;
   }
+  t -= 2;
+  return (cc / 2) * (t * t * t + 2) + b;
 };
 
 class Ranking extends React.Component {
@@ -74,27 +75,33 @@ class Ranking extends React.Component {
   };
 
   onScrollToTop = () => {
-    const self = document.getElementById("content")
-    const pageScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const self = document.getElementById('content');
+    const pageScrollTop =
+      window.pageYOffset || document.documentElement.scrollTop;
     const contentScrollTop = self.offsetTop;
     if (contentScrollTop < pageScrollTop) {
-      const start = Date.now()
+      const start = Date.now();
       const frame = () => {
-        const current = Date.now()
+        const current = Date.now();
         const delta = current - start;
-        const next = easeInOutCubic(delta, pageScrollTop, contentScrollTop, 450);
+        const next = easeInOutCubic(
+          delta,
+          pageScrollTop,
+          contentScrollTop,
+          450,
+        );
         document.body.scrollTop = next;
         document.documentElement.scrollTop = next;
         if (delta < 450) {
-          raf(frame)
+          raf(frame);
         } else {
           document.body.scrollTop = contentScrollTop;
           document.documentElement.scrollTop = contentScrollTop;
         }
-      }
+      };
       raf(frame);
     }
-  }
+  };
 
   render() {
     const { name, updateDate, dataSource, isLoading } = this.state;
@@ -104,7 +111,12 @@ class Ranking extends React.Component {
         dataIndex: 'name',
         key: 'name',
         render: (itm, rec) => (
-          <a href={`https://chii.in/subject/${rec.id}`} target="_blank">{itm}</a>
+          <a
+            href={`https://chii.in/subject/${rec.id}`}
+            target="_blank"
+            rel="noopener noreferrer">
+            {itm}
+          </a>
         ),
       },
       {
@@ -139,9 +151,7 @@ class Ranking extends React.Component {
         <Table
           dataSource={
             name
-              ? dataSource.filter(itm =>
-                itm.name.includes(name),
-              )
+              ? dataSource.filter(itm => itm.name.includes(name))
               : dataSource
           }
           columns={columns}
@@ -151,7 +161,7 @@ class Ranking extends React.Component {
             pageSizeOptions: ['20', '50', '100'],
             showQuickJumper: true,
             showSizeChanger: true,
-            onChange: this.onScrollToTop
+            onChange: this.onScrollToTop,
           }}
         />
       </Content>

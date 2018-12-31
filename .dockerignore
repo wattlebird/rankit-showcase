@@ -1,0 +1,16 @@
+bin/
+obj/
+out/
+.git/
+.gitignore/
+.vscode/
+Pipeline/
+caddy.log
+customrank_*.csv
+caddy
+Caddyfile
+
+#JS
+ClientApp/build/
+ClientApp/node_modules/
+ClientApp/*.md
