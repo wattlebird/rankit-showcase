@@ -6,7 +6,6 @@ COPY *.cs *.csproj *.json ./
 COPY ClientApp ./ClientApp
 COPY Controllers ./Controllers
 COPY Pages ./Pages
-COPY Properties ./Properties
 COPY Services ./Services
 RUN dotnet restore
 

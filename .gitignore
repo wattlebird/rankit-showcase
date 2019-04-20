@@ -239,3 +239,6 @@ _Pvt_Extensions
 *.csv
 !customrank.csv
 *.tsv
+
+# Docker
+docker-compose.yml

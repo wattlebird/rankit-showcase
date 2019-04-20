@@ -1,0 +1,6 @@
+https://ranking.ikely.me {
+    proxy / http://app:5000 {
+        transparent
+        websocket
+    }
+}
