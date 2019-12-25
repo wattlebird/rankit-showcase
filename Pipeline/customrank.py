@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import gc
 from rankit.Table import Table
-from rankit.Ranker import MasseyRanker, ColleyRanker, KeenerRanker, ODRanker, MarkovRanker
+from rankit.Ranker import MasseyRanker, KeenerRanker, ODRanker, MarkovRanker
 from rankit.Merge import borda_count_merge
 
 gc.enable()
@@ -30,45 +30,41 @@ prob = pd.read_csv('pair.prob.tsv', header=None, delimiter='\t', names=['item1',
 
 
 
-data = Table(avg, ['item1', 'item2', 'score1', 'score2'])
-ranker = MasseyRanker(data)
-masseyRank = ranker.rank()
-colley = ColleyRanker(data)
-colleyRank = colley.rank()
-keener = KeenerRanker(data)
-keenerRank = keener.rank()
-od = ODRanker(data)
-odRank = od.rank()
-markov = MarkovRanker(data)
-markovRank = markov.rank()
+data = Table(avg, col = ['item1', 'item2', 'score1', 'score2'])
+ranker = MasseyRanker()
+masseyRank = ranker.rank(data)
+keener = KeenerRanker()
+keenerRank = keener.rank(data)
+od = ODRanker()
+odRank = od.rank(data)
+markov = MarkovRanker()
+markovRank = markov.rank(data)
 
-data = Table(cdf, ['item1', 'item2', 'score1', 'score2'])
-ranker = MasseyRanker(data)
-masseyCdfRank = ranker.rank()
-colley = ColleyRanker(data)
-colleyCdfRank = colley.rank()
-keener = KeenerRanker(data)
-keenerCdfRank = keener.rank()
-od = ODRanker(data)
-odCdfRank = od.rank()
-markov = MarkovRanker(data)
-markovCdfRank = markov.rank()
+data = Table(cdf, col = ['item1', 'item2', 'score1', 'score2'])
+ranker = MasseyRanker()
+masseyCdfRank = ranker.rank(data)
+keener = KeenerRanker()
+keenerCdfRank = keener.rank(data)
+od = ODRanker()
+odCdfRank = od.rank(data)
+markov = MarkovRanker()
+markovCdfRank = markov.rank(data)
 
-data = Table(prob, ['item1', 'item2', 'score1', 'score2'])
-ranker = MasseyRanker(data)
-masseyProbRank = ranker.rank()
-colley = ColleyRanker(data)
-colleyProbRank = colley.rank()
-keener = KeenerRanker(data)
-keenerProbRank = keener.rank()
-od = ODRanker(data)
-odProbRank = od.rank()
-markov = MarkovRanker(data)
-markovProbRank = markov.rank()
+data = Table(prob, col = ['item1', 'item2', 'score1', 'score2'])
+ranker = MasseyRanker()
+masseyProbRank = ranker.rank(data)
+colley = ColleyRanker()
+colleyProbRank = colley.rank(data)
+keener = KeenerRanker()
+keenerProbRank = keener.rank(data)
+od = ODRanker()
+odProbRank = od.rank(data)
+markov = MarkovRanker()
+markovProbRank = markov.rank(data)
 
 
-mergedRank = borda_count_merge([masseyRank, colleyRank, keenerRank, odRank, markovRank, masseyCdfRank, colleyCdfRank, 
-keenerCdfRank, odCdfRank, markovCdfRank, masseyProbRank, colleyProbRank, keenerProbRank, odProbRank, markovProbRank])
+mergedRank = borda_count_merge([masseyRank, keenerRank, odRank, markovRank, masseyCdfRank, 
+keenerCdfRank, odCdfRank, markovCdfRank, masseyProbRank, keenerProbRank, odProbRank, markovProbRank])
 
 subject = pd.read_csv("subject.tsv", delimiter='\t', dtype={
     'iid': 'uint32'
