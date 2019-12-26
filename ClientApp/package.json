@@ -1,48 +1,16 @@
 {
-  "name": "@HashemKhalifa/webpack-react-boilerplate",
-  "version": "1.0.0",
-  "description": "Boilerplate for react and webpack",
+  "name": "rankit-showcase",
+  "version": "0.1.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --open",
     "build": "cross-env NODE_ENV=production webpack",
     "format": "prettier --write 'packages/**/*.js'",
-    "test": "jest --watchAll --coverage",
-    "precommit": "lint-staged"
+    "test": "jest --watchAll --coverage"
   },
-  "lint-staged": {
-    "*.{js,jsx,css,md}": [
-      "prettier --write --single-quote",
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "moduleDirectories": [
-      "src",
-      "node_modules"
-    ],
-    "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.(jpg|gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
-    },
-    "transform": {
-      "^.+\\.(js|jsx)$": "babel-jest",
-      ".+\\.(css|styl|less|sass|scss)$": "<rootDir>/node_modules/jest-css-modules-transform"
-    },
-    "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js",
-    "moduleFileExtensions": [
-      "css",
-      "scss",
-      "js",
-      "json",
-      "jsx"
-    ]
-  },
-  "repository": "https://github.com/HashemKhalifa/webpack-react-boilerplate",
-  "author": "HashemKhalifa",
-  "license": "ISC",
+  "repository": "https://github.com/wattlebird/rankit-showcase",
+  "author": "Ronnie Wang",
   "private": false,
   "engines": {
     "node": ">=8",
