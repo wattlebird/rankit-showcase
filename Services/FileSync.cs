@@ -71,7 +71,7 @@ namespace ranking_showcase.Service {
                 CloudFile fr = dir.GetFileReference(rankingFile);
                 // One should check whether there's an existing file
                 bool ex = await fr.ExistsAsync();
-                if (ex && !_fileProvider.GetFileInfo(rankingFile).Exists) {
+                if (ex) {
                     await fr.DownloadToFileAsync(rankingFile, FileMode.Create);
                 }
                 if (this._rankingMgr.currentFile != rankingFile) {

@@ -19,10 +19,11 @@ namespace ranking_showcase.Service {
         public string currentFile {get; private set;}
         public RankingMgr(IFileProvider fileProvider) {
             this._fileProvider = fileProvider;
-            this.refresh("customrank.csv");
+            this.refresh(null);
         }
 
         public void refresh(string fileName) {
+            if (String.IsNullOrEmpty(fileName)) return;
             var rankingFile = this._fileProvider.GetFileInfo(fileName);
             if (rankingFile.Exists) {
                 this.rankingItms.Clear();
