@@ -20,7 +20,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --tag image
     - name: Log into registry
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.pkg.github.com -u wattlebird --password-stdin
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u wattlebird --password-stdin
 
     - name: Push image
       run: |
