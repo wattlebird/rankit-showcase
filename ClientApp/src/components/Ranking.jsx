@@ -105,6 +105,7 @@ class Ranking extends React.Component {
 
   render() {
     const { name, updateDate, dataSource, isLoading } = this.state;
+    const parser = new DOMParser();
     const columns = [
       {
         title: '番剧',
@@ -114,8 +115,9 @@ class Ranking extends React.Component {
           <a
             href={`https://chii.in/subject/${rec.id}`}
             target="_blank"
-            rel="noopener noreferrer">
-            {itm}
+            rel="noopener noreferrer"
+          >
+            {parser.parseFromString(itm, 'text/html').body.textContent}
           </a>
         ),
       },
