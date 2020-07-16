@@ -18,7 +18,7 @@
   "dependencies": {
     "antd": "^3.10.7",
     "axios": "^0.18.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "npm-check-updates": "^2.14.2",
     "prop-types": "15.6.2",
     "raf": "^3.4.1",
